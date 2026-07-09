@@ -1,5 +1,5 @@
 """
-WSGI config for spends project.
+WSGI config for spendings project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'spends.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'spendings.settings')
 
 application = get_wsgi_application()
