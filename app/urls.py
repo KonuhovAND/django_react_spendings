@@ -1,5 +1,5 @@
 from django.urls import path
-import students.views as views
+import app.views as views
 
 
 urlpatterns = [
