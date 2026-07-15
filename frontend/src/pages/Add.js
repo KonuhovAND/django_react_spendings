@@ -22,7 +22,6 @@ import { data } from "react-router-dom";
    const all_cat = [...catagories,...income]
 
    const handled = (e) =>{
-        e.preventDefault()
         const data = {
             amount: amount,
             catagory: catagory
@@ -54,10 +53,10 @@ import { data } from "react-router-dom";
             ))}
 
         </div>
-        <form onSubmit={handled}>
+        <form className="fancy-form" onSubmit={handled}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
             <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{all_cat.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
-            <button type="submit">Save</button>
+            <button className='form-button'  type="submit">Save</button>
         </form>
         </>
     );

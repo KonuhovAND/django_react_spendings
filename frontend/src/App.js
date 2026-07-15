@@ -4,6 +4,7 @@ import Add from './pages/Add'
 import Delete from './pages/Delete'
 import Home from './pages/Home'
 import Stats from './pages/Statictics'
+import Catagories from './pages/Catagories';
 
 
 function App() {
@@ -14,13 +15,14 @@ function App() {
     <a className='navigation_bar--element' href='/add'>Add</a>
     <a className='navigation_bar--element' href='/delete'>Delete</a>
     <a className='navigation_bar--element' href='/stats'>Statistics</a>
-    <a className='navigation_bar--element' href='/download'>Download data</a>
+    <a className='navigation_bar--element' href='/cats'>Catagories</a>
    </nav> 
     <Routes>
       <Route path="/" element={<Home />} />
         <Route path="/add" element={<Add />} />
         <Route path="/delete" element={<Delete />} />
-        <Route path="/statistics" element={<Stats />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path="/cats" element={<Catagories />} />
     </Routes>
    </BrowserRouter>
   );
