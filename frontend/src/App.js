@@ -8,6 +8,7 @@ import Stats from './pages/Statictics'
 
 function App() {
   return (
+    <BrowserRouter>
    <nav className='navigation_bar'>
     <a className='navigation_bar--element' href='/'>Home</a>
     <a className='navigation_bar--element' href='/add'>Add</a>
@@ -15,6 +16,13 @@ function App() {
     <a className='navigation_bar--element' href='/stats'>Statistics</a>
     <a className='navigation_bar--element' href='/download'>Download data</a>
    </nav> 
+    <Routes>
+      <Route path="/" element={<Home />} />
+        <Route path="/add" element={<Add />} />
+        <Route path="/delete" element={<Delete />} />
+        <Route path="/statistics" element={<Statistics />} />
+    </Routes>
+   </BrowserRouter>
   );
 }
 
