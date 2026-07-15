@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     max-width: 1200px;
-    margin: 0 auto; 
+    margin: .1vh auto; 
 }
 
 .navigation_bar--element{
