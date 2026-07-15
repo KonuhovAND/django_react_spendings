@@ -1,6 +1,8 @@
 :root{
     --background-color:#70ac74;
+    --dark-background-color:	#1a5c4d;
     --text-color: 		#d8d8d8;
+    --div-color:#4b8c5f;
 }
 body {
     background-color: 	#70ac74;
