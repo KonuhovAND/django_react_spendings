@@ -1,3 +1,4 @@
-export function Delete(){
+ function Delete(){
     return;
 }
+export default Delete;

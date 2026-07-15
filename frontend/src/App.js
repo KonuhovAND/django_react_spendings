@@ -20,7 +20,7 @@ function App() {
       <Route path="/" element={<Home />} />
         <Route path="/add" element={<Add />} />
         <Route path="/delete" element={<Delete />} />
-        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/statistics" element={<Stats />} />
     </Routes>
    </BrowserRouter>
   );

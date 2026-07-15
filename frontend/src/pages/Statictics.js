@@ -1,3 +1,4 @@
-export default function Stats(){
+function Stats(){
     return;
 }
+export default Stats;
