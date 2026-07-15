@@ -2,29 +2,6 @@
 import { data } from "react-router-dom";
 
  
-function Add_action(catagories,income){
-    const [amount, catagory,url_,setAmount,setCatatory] = useState('')
-    const handled = (e) =>{
-        e.preventDefault()
-        const data = {
-            amount: amount,
-            catagory: catagory
-        }
-        if (catagory in catagories){url_ ='api/spend/'}
-        if (catagory in income){url_ ='api/income/'}
-        fetch(url_,{
-            method: 'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(data)
-        })
-        alert("SAVED!")
-    }
-    return(
-        <form onSubmit={handled}>
-            <input type="number" value={amount} placeholder="Amount" ></input>
-        </form>
-    )
-}
 
  function Add(){
     // const [catagories, setData] = useState(null);
@@ -38,28 +15,50 @@ function Add_action(catagories,income){
 
    const catagories = ['apple','apple2','apple3'] 
    const income = ['income','income2','income3']
+
+   const [amount,setAmount] = useState('')
+   const [catagory,setCatatory] = useState('')
+   let url_ =''
+   const all_cat = [...catagories,...income]
+
+   const handled = (e) =>{
+        e.preventDefault()
+        const data = {
+            amount: amount,
+            catagory: catagory
+        }
+        if (catagories.includes(catagory)){url_ ='api/spend/'}
+        if (income.includes(catagory)){url_ ='api/income/'}
+        fetch(url_,{
+            method: 'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        })
+        alert("SAVED!")
+    }
+    
     return(
         <>
         <div className="catagories">
             <p className="catagories-text">Available catagories to spends</p>
             {catagories.map((item,index) => (
-                <p className="catagories-text">{index} - {item}</p>
+                <p className="catagories-text">{item}</p>
             ))}
-            <select>
-                {catagories.map((item) => (
-                    <option>{item}</option>
-                ))}
-            </select>
 
         </div>
         
         <div className="catagories">
             <p className="catagories-text">Available catagories to income</p>
             {income.map((item,index) => (
-                <p className="catagories-text">{index} - {item}</p>
+                <p className="catagories-text">{item}</p>
             ))}
 
         </div>
+        <form onSubmit={handled}>
+            <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
+            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{all_cat.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
+            <button type="submit">Save</button>
+        </form>
         </>
     );
 }
