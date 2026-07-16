@@ -1,5 +1,6 @@
 from django.urls import path
-from app.views import api_response
+import app.views
 urlpatterns = [
-    path('app/api',view=api_response)
+    path('app/api',view=app.views.api_response),
+    path('app/api/income',view=app.views.fetch_income),
 ]
