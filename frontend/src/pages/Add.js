@@ -4,15 +4,20 @@ import { data } from "react-router-dom";
  
 
  function Add(){
-    // const [catagories, setData] = useState(null);
-    // useEffect(() => {
-    // // Fetch data from the Django server URL
-    // fetch('http://127.0.0/api/data/catagories')
-    //   .then(response => response.json())
-    //   .then(catagories => setData(data))
-    //   .catch(error => console.error('Error fetching data:', error));
-    // }, []);
-
+// {
+//   "Spends": [
+//     {
+//       "id": 1,
+//       "text": "Перевод"
+//     }
+//   ],
+//   "Income": [
+//     {
+//       "id": 1,
+//       "text": "ЗП"
+//     }
+//   ]
+// }
     let catagories = {
         'cat_name':true,
         'cat_name1':false,
