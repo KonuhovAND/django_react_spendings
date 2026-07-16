@@ -13,8 +13,13 @@ import { data } from "react-router-dom";
     //   .catch(error => console.error('Error fetching data:', error));
     // }, []);
 
-   const catagories = ['apple','apple2','apple3'] 
-   const income = ['income','income2','income3']
+    let catagories = {
+        'cat_name':true,
+        'cat_name1':false,
+        'cat_name2':true,
+        'cat_name3':false,
+
+    }
 
    const [amount,setAmount] = useState('')
    const [catagory,setCatatory] = useState('')
