@@ -14,3 +14,9 @@ def fetch_income(request):
     month_ago = timezone.now() - timedelta(days=30)
     income = list(Income.objects.filter(created_at__gte=month_ago).values())
     return JsonResponse({"message":income})
+
+def fetch_spendings(request):
+    month_ago = timezone.now() - timedelta(days=30)
+    spendings = list(Spending.objects.filter(created_at__gte=month_ago).values())
+    return JsonResponse({"message":spendings})
+
