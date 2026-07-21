@@ -1,12 +1,31 @@
  import { useState, useEffect } from "react";
 import { data } from "react-router-dom";
 
-// TODO: добавить дату  
+
+function fetch_catagories(return_spends_cat=0,return_income_cat=0){
+// {
+//   "Spends": [
+//     {
+//       "id": 1,
+//       "text": "Перевод"
+//     }
+//   ],
+//   "Income": [
+//     {
+//       "id": 1,
+//       "text": "ЗП"
+//     }
+//   ]
+// }
+    let url_ = 'app/api/catagories'
+    fetch(url_).then((response))
+}
+
 function Add_income(){
-    let catagories = ['cat_inc1'];
+    let catagories;
     const [amount,setAmount] = useState('')
     const [catagory,setCatatory] = useState('')
-    let url_ =''
+
     const handled = (e) =>{
 
         const data = {
@@ -14,8 +33,7 @@ function Add_income(){
             catagory: catagory
         }
 
-        url_ = 'app/api/catagories'
-        
+
         fetch(url_,{
             method: 'POST',
             headers:{'Content-Type':'application/json'},
@@ -45,20 +63,7 @@ function Add_income(){
 }
 
  function Add_spends(){
-// {
-//   "Spends": [
-//     {
-//       "id": 1,
-//       "text": "Перевод"
-//     }
-//   ],
-//   "Income": [
-//     {
-//       "id": 1,
-//       "text": "ЗП"
-//     }
-//   ]
-// }
+
     let catagories = [
         'cat_name',
         'cat_name1',
@@ -67,14 +72,12 @@ function Add_income(){
    
    const [amount,setAmount] = useState('')
    const [catagory,setCatatory] = useState('')
-   let url_ =''
 
    const handled = (e) =>{
         const data = {
             amount: amount,
             catagory: catagory
         }
-        url_ = 'app/api/catagories'
         fetch(url_,{
             method: 'POST',
             headers:{'Content-Type':'application/json'},
