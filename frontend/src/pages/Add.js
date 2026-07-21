@@ -2,7 +2,7 @@
 import { data } from "react-router-dom";
 
 
-function fetch_catagories(return_spends_cat=0,return_income_cat=0){
+async function fetch_catagories(){
 // {
 //   "Spends": [
 //     {
@@ -17,12 +17,25 @@ function fetch_catagories(return_spends_cat=0,return_income_cat=0){
 //     }
 //   ]
 // }
-    let url_ = 'app/api/catagories'
-    fetch(url_).then((response))
+    let url_ = '/app/api/catagories'
+    let income = []
+    let spends = []
+    try{
+        const response = await fetch(url_);
+    
+    const data = await response.json();
+    return {
+        income:data.Income,
+        spends:data.Spends,
+    }
+    }
+    catch{}
+
 }
 
 function Add_income(){
-    let catagories;
+    let catagories = await fetch_catagories();
+    let catagories = catagories.income;
     const [amount,setAmount] = useState('')
     const [catagory,setCatatory] = useState('')
 
@@ -34,7 +47,7 @@ function Add_income(){
         }
 
 
-        fetch(url_,{
+        fetch('app/api/recieve_data',{
             method: 'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(data)
@@ -64,11 +77,9 @@ function Add_income(){
 
  function Add_spends(){
 
-    let catagories = [
-        'cat_name',
-        'cat_name1',
-        'cat_name2'
-    ]
+    
+    let catagories = await fetch_catagories();
+    let catagories = catagories.spends;
    
    const [amount,setAmount] = useState('')
    const [catagory,setCatatory] = useState('')
@@ -78,7 +89,7 @@ function Add_income(){
             amount: amount,
             catagory: catagory
         }
-        fetch(url_,{
+        fetch('app/api/recieve_data',{
             method: 'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(data)

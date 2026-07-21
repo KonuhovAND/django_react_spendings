@@ -19,4 +19,5 @@ def fetch_spending(request):
     spending = list(Spending.objects.filter(created_at__gte=month_ago).values())
     return JsonResponse({"data":spending})
 
-    
+def receive_data(request):
+    pass  
