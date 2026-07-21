@@ -26,7 +26,7 @@ function Add_income(){
         .then((r) => r.json())
         .then((d) => setCategories(d.category_income))
     },[]);
-    const handled = (e) =>{
+    const handleRequest = (e) =>{
 
         const data = {
             amount: amount,
@@ -52,7 +52,7 @@ function Add_income(){
             ))}
 
         </div>
-        <form className="fancy-form" onSubmit={handled}>
+        <form className="fancy-form" onSubmit={handleRequest}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
             <input className="form-input" placeholder="Enter text to spending" type='text' name='text' onChange={(e) => setText(e.target.value)}/>
             <input type="date" id="date" name="date" onChange={(e) => setDate(e.target.value)}/>
@@ -82,7 +82,7 @@ function Add_income(){
             setCategories(d.category_spend)})
     },[]);
        
-   const handled = (e) =>{
+   const handleRequest = (e) =>{
         const data = {
             amount: amount,
             catagory: catagory,
@@ -108,7 +108,7 @@ function Add_income(){
         </div>
         
       
-        <form className="fancy-form" onSubmit={handled}>
+        <form className="fancy-form" onSubmit={handleRequest}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
             <input className="form-input" placeholder="Enter text to spending" type='text' name='text' onChange={(e) => setText(e.target.value)}/>
             <input type="date" id="date" name="date" onChange={(e) => setDate(e.target.value)}/>

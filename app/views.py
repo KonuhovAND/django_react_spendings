@@ -21,3 +21,5 @@ def fetch_spending(request):
 
 def receive_data(request):
     pass
+def receive_categories(request):
+    pass
