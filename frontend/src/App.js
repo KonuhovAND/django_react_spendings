@@ -4,7 +4,7 @@ import Add from './pages/Add'
 import Delete from './pages/Delete'
 import Home from './pages/Home'
 import Stats from './pages/Statictics'
-import Catagories from './pages/Catagories';
+import Catagories from './pages/Categories';
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Route path="/add" element={<Add />} />
         <Route path="/delete" element={<Delete />} />
         <Route path="/stats" element={<Stats />} />
-        <Route path="/cats" element={<Catagories />} />
+        <Route path="/categories" element={<Catagories />} />
     </Routes>
    </BrowserRouter>
   );
