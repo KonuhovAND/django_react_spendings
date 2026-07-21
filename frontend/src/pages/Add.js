@@ -2,8 +2,49 @@
 import { data } from "react-router-dom";
 
 // TODO: добавить дату  
+function Add_income(){
+    let catagories = ['cat_inc1'];
+    const [amount,setAmount] = useState('')
+    const [catagory,setCatatory] = useState('')
+    let url_ =''
+    const handled = (e) =>{
 
- function Add(){
+        const data = {
+            amount: amount,
+            catagory: catagory
+        }
+
+        url_ = 'app/api/catagories'
+        
+        fetch(url_,{
+            method: 'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        })
+        alert("SAVED!")
+    }
+    return(
+        <>
+        <div className="catagories">
+            <p className="catagories-text">Available catagories to income</p>
+            {catagories.map((item,index) => (
+                <p className="catagories-text">{item}</p>
+            ))}
+
+        </div>
+        <form className="fancy-form" onSubmit={handled}>
+            <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
+            <input type="date" id="date" name="date"/>
+            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{catagories.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
+            <button className='form-button'  type="submit">Save</button>
+        </form>
+        </>
+    )
+
+
+}
+
+ function Add_spends(){
 // {
 //   "Spends": [
 //     {
@@ -18,26 +59,22 @@ import { data } from "react-router-dom";
 //     }
 //   ]
 // }
-    let catagories = {
-        'cat_name':true,
-        'cat_name1':false,
-        'cat_name2':true,
-        'cat_name3':false,
-
-    }
-
+    let catagories = [
+        'cat_name',
+        'cat_name1',
+        'cat_name2'
+    ]
+   
    const [amount,setAmount] = useState('')
    const [catagory,setCatatory] = useState('')
    let url_ =''
-   const all_cat = [...catagories,...income]
 
    const handled = (e) =>{
         const data = {
             amount: amount,
             catagory: catagory
         }
-        if (catagories.includes(catagory)){url_ ='api/spend/'}
-        if (income.includes(catagory)){url_ ='api/income/'}
+        url_ = 'app/api/catagories'
         fetch(url_,{
             method: 'POST',
             headers:{'Content-Type':'application/json'},
@@ -56,19 +93,25 @@ import { data } from "react-router-dom";
 
         </div>
         
-        <div className="catagories">
-            <p className="catagories-text">Available catagories to income</p>
-            {income.map((item,index) => (
-                <p className="catagories-text">{item}</p>
-            ))}
-
-        </div>
+      
         <form className="fancy-form" onSubmit={handled}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
-            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{all_cat.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
+            <input type="date" id="date" name="date"/>
+            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{catagories.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
             <button className='form-button'  type="submit">Save</button>
         </form>
         </>
     );
 }
-export default Add;
+
+
+function App_add(){
+    return(
+        <>
+            <Add_spends/>
+            <Add_income/>
+        </>
+    );
+
+}
+export default App_add;
