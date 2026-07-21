@@ -25,8 +25,8 @@ async function fetch_catagories(){
     
     const data = await response.json();
     return {
-        income:data.Income,
-        spends:data.Spends,
+        income:data.catagory_income,
+        spends:data.catagory_spend,
     }
     }
     catch{}
