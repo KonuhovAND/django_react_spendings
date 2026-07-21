@@ -15,7 +15,7 @@ function App() {
     <a className='navigation_bar--element' href='/add'>Add</a>
     <a className='navigation_bar--element' href='/delete'>Delete</a>
     <a className='navigation_bar--element' href='/stats'>Statistics</a>
-    <a className='navigation_bar--element' href='/cats'>Catagories</a>
+    <a className='navigation_bar--element' href='/categories'>Catagories</a>
    </nav> 
     <Routes>
       <Route path="/" element={<Home />} />
