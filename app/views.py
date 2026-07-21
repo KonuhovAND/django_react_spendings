@@ -4,10 +4,10 @@ from django.utils import timezone
 from datetime import timedelta
 # Create your views here.
 
-def fetch_catagories(request):
+def fetch_categories(request):
     spend = list(Category_spend.objects.values())
     income = list(Category_income.objects.values())
-    return JsonResponse({"catagory_spend":spend,"catagory_income":income})
+    return JsonResponse({"category_spend":spend,"category_income":income},json_dumps_params={'ensure_ascii': False})
 
 def fetch_income(request):
     month_ago = timezone.now() - timedelta(days=30)
@@ -20,4 +20,4 @@ def fetch_spending(request):
     return JsonResponse({"data":spending})
 
 def receive_data(request):
-    pass  
+    pass

@@ -2,48 +2,37 @@
 import { data } from "react-router-dom";
 
 
-async function fetch_catagories(){
-// {
-//   "Spends": [
-//     {
-//       "id": 1,
-//       "text": "Перевод"
-//     }
+//   "catagory_spend": [
+//    'cat1','cat2',... 
 //   ],
-//   "Income": [
-//     {
-//       "id": 1,
-//       "text": "ЗП"
-//     }
+//   "catagory_income": [
+//    'cat1','cat2',... 
 //   ]
 // }
-    let url_ = '/app/api/catagories'
-    let income = []
-    let spends = []
-    try{
-        const response = await fetch(url_);
-    
-    const data = await response.json();
-    return {
-        income:data.catagory_income,
-        spends:data.catagory_spend,
-    }
-    }
-    catch{}
-
-}
 
 function Add_income(){
-    let catagories = await fetch_catagories();
-    let catagories = catagories.income;
     const [amount,setAmount] = useState('')
-    const [catagory,setCatatory] = useState('')
+    const [catagory,setCategory] = useState('')
+    const [catagories,setCategories] = useState([])
+    const [date, setDate] = useState(new Date());
+    const [text,setText] = useState('')
 
+
+
+
+    let url_ = 'http://localhost:8000/app/api/categories'
+    useEffect(() =>{
+        fetch(url_)
+        .then((r) => r.json())
+        .then((d) => setCategories(d.category_income))
+    },[]);
     const handled = (e) =>{
 
         const data = {
             amount: amount,
-            catagory: catagory
+            catagory: catagory,
+            text: text,
+            date:date,
         }
 
 
@@ -58,15 +47,16 @@ function Add_income(){
         <>
         <div className="catagories">
             <p className="catagories-text">Available catagories to income</p>
-            {catagories.map((item,index) => (
-                <p className="catagories-text">{item}</p>
+            {catagories.map((item) => (
+                <p key ={item.id}className="catagories-text">{item.text}</p>
             ))}
 
         </div>
         <form className="fancy-form" onSubmit={handled}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
-            <input type="date" id="date" name="date"/>
-            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{catagories.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
+            <input className="form-input" placeholder="Enter text to spending" type='text' name='text' onChange={(e) => setText(e.target.value)}/>
+            <input type="date" id="date" name="date" onChange={(e) => setDate(e.target.value)}/>
+            <select className="form-select" value={catagory} onChange={(e) =>setCategory(e.target.value)}>{catagories.map((cat) => (<option value={cat.text} key={cat.id}>{cat.text}</option>))}</select>
             <button className='form-button'  type="submit">Save</button>
         </form>
         </>
@@ -76,18 +66,28 @@ function Add_income(){
 }
 
  function Add_spends(){
+    const [amount,setAmount] = useState('')
+    const [catagory,setCategory] = useState('')
+    const [catagories,setCategories] = useState([])
+    const [date, setDate] = useState(new Date());
+    const [text,setText] = useState('')
 
-    
-    let catagories = await fetch_catagories();
-    let catagories = catagories.spends;
-   
-   const [amount,setAmount] = useState('')
-   const [catagory,setCatatory] = useState('')
 
+    let url_ = 'http://localhost:8000/app/api/categories'
+    useEffect(() =>{
+        fetch(url_)
+        .then((r) => r.json())
+        .then((d) => {
+            console.log("DATA:", d);  // SEE WHAT YOU GET
+            setCategories(d.category_spend)})
+    },[]);
+       
    const handled = (e) =>{
         const data = {
             amount: amount,
-            catagory: catagory
+            catagory: catagory,
+            text: text,
+            date:date,
         }
         fetch('app/api/recieve_data',{
             method: 'POST',
@@ -101,8 +101,8 @@ function Add_income(){
         <>
         <div className="catagories">
             <p className="catagories-text">Available catagories to spends</p>
-            {catagories.map((item,index) => (
-                <p className="catagories-text">{item}</p>
+            {catagories.map((item) => (
+                <p key={item.id} className="catagories-text">{item.text}</p>
             ))}
 
         </div>
@@ -110,8 +110,9 @@ function Add_income(){
       
         <form className="fancy-form" onSubmit={handled}>
             <input className="form-input" type="number" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
-            <input type="date" id="date" name="date"/>
-            <select className="form-select" value={catagory} onChange={(e) =>setCatatory(e.target.value)}>{catagories.map((cat,index) => (<option value={cat} key={index}>{cat}</option>))}</select>
+            <input className="form-input" placeholder="Enter text to spending" type='text' name='text' onChange={(e) => setText(e.target.value)}/>
+            <input type="date" id="date" name="date" onChange={(e) => setDate(e.target.value)}/>
+            <select className="form-select" value={catagory} onChange={(e) =>setCategory(e.target.value)}>{catagories.map((cat) => (<option value={cat.text} key={cat.id}>{cat.text}</option>))}</select>
             <button className='form-button'  type="submit">Save</button>
         </form>
         </>
@@ -128,4 +129,5 @@ function App_add(){
     );
 
 }
+
 export default App_add;
