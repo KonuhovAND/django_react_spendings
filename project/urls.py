@@ -18,13 +18,19 @@ from django.contrib import admin
 from django.urls import path,include
 import app.api as api
 
-catagoriesApi = api.CategoriesApi()
-dataApi = api.DataApi()
+category_spendAPI = api.Category_spendAPI()
+spendingAPI = api.SpendingAPI()
+
+category_incomeAPI = api.Category_incomeAPI()
+incomeAPI = api.IncomeAPI()
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls')),
-    path('fake_api/',include(catagoriesApi.urls)),
-    path('fake_api/',include(dataApi.urls)),
+    path('fake_api/',include(category_spendAPI.urls)),
+    path('fake_api/',include(spendingAPI.urls)),
+    path('fake_api/',include(category_incomeAPI.urls)),
+    path('fake_api/',include(incomeAPI.urls)),
 ]
