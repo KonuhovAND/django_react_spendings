@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+import app.api as api
+
+catagoriesApi = api.CategoriesApi()
+dataApi = api.DataApi()
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls')),
+    path('fake_api/',include(catagoriesApi.urls)),
+    path('fake_api/',include(dataApi.urls)),
 ]

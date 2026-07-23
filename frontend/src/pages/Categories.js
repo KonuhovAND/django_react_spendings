@@ -1,7 +1,25 @@
 import { useState, useEffect } from "react";
+//TODO:переделать fetch на то что мы используем
 // ну короче, нужно управлять категориями, добавлять это точно
 // но удалять хз, если я чето добавил, скорее всего легче просто удалить трату из бд
 // а тут только работать с категориями которые есть(добавлять в разные короче)
+// {
+//   "meta": {
+//     "limit": 20,
+//     "next": null,
+//     "offset": 0,
+//     "previous": null,
+//     "total_count": 1
+//   },
+//   "objects": [
+//     {
+//       "id": 1,
+//       "resource_uri": "/fake_api/categories/1/",
+//       "text": "Перевод"
+//     }
+//   ]
+// }
+
 function Catagories(){
     const [catagories_income,setCategoriesIncome] = useState([])
     const [catagories_spend,setCategoriesSpend] = useState([])

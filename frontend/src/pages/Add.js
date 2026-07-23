@@ -1,12 +1,20 @@
  import { useState, useEffect } from "react";
 import { data } from "react-router-dom";
-
-
-//   "catagory_spend": [
-//    'cat1','cat2',... 
-//   ],
-//   "catagory_income": [
-//    'cat1','cat2',... 
+//TODO: передаелть на сбор данных который мы используем
+// {
+//   "meta": {
+//     "limit": 20,
+//     "next": null,
+//     "offset": 0,
+//     "previous": null,
+//     "total_count": 1
+//   },
+//   "objects": [
+//     {
+//       "id": 1,
+//       "resource_uri": "/fake_api/categories/1/",
+//       "text": "Перевод"
+//     }
 //   ]
 // }
 
